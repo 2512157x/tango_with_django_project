@@ -35,6 +35,7 @@ def populate():
             'Django': {'pages': django_pages},
             'Other Frameworks': {'pages': other_pages} }
 
+    n = 0
     for cat, cat_data in cats.items():
         if cat == 'Python':
             c = add_cat(cat, 128, 64)
@@ -43,7 +44,8 @@ def populate():
         elif cat == 'Other Frameworks':
             c = add_cat(cat, 32, 16)
         for p in cat_data['pages']:
-            add_page(c, p['title'], p['url'])
+            n += 1
+            add_page(c, p['title'], p['url'], n)
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
